@@ -2,16 +2,24 @@
 #include <iostream>
 #include "main.h"
 #include "GameUtility.h"
+#include "DrawObject.h"
+#include "GameManager.h"
 
 //プロトタイプ宣言
 int initLibrary();
+void initGame();
 void UpdateGame();
 void DrawGame();
 void DrawDebug();
 
 //名前空間の使用
 using namespace std;
-using namespace GameBase;
+
+namespace {
+    GameManager manager;
+    bool DEBAUG_MODE = true;
+    std::vector<DrawObject> test_objVec;
+}
 
 //メイン関数
 int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nShowCmd) {
@@ -21,6 +29,8 @@ int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int n
         MessageBox(NULL, message.c_str(), NULL, MB_OK | MB_ICONERROR);
         return -1;
     }
+
+    initGame();
 
     while (true) {
         ClearDrawScreen();
@@ -56,6 +66,11 @@ int initLibrary() {
     return 0;
 }
 
+void initGame() {
+    manager.InitGame();
+    test_objVec.push_back(DrawObject());
+}
+
 //ゲームの処理を更新する処理
 void UpdateGame() {
     switch (manager.GetStatus()) {
@@ -76,6 +91,15 @@ void UpdateGame() {
 void DrawGame() {
     switch (manager.GetStatus()) {
     case GameStatus::WAITING: {
+        for (auto test_obj : test_objVec) {
+            const Vector2D& pos = test_obj.GetPostion();
+            DrawBox(
+                pos.x - (test_obj.GetWidth() / 2), pos.y - (test_obj.GetHeight() / 2),
+                pos.x + (test_obj.GetWidth() / 2), pos.y + (test_obj.GetHeight() / 2),
+                test_obj.GetColor(),
+                true
+            );
+        }
         break;
     }
     case GameStatus::RUNNING: {
@@ -91,7 +115,7 @@ void DrawGame() {
 
 //デバックを描画する処理
 void DrawDebug() {
-    if (GameBase::DEBAUG_MODE) {
+    if (DEBAUG_MODE) {
         string leftUp_side = "時間: " + to_string(manager.GetTime());
         GameUtility::DrawTextA(DrawType::LEFT, 10, 10, 15, Color::WHITE, Color::BLACK, leftUp_side);
 

@@ -1,16 +1,11 @@
 #pragma once
-#include "GameManager.h"
+#include <vector>
 
 namespace Window {
-    const char* DEFAULT_TITLE = "Game";
-    const int FPS = 60;
-    const int WIDTH = 1280;
-    const int HEIGHT = 720;
-    const int COLORBIT = 32;
-    const int BACKGROUND_COLOR[3] = { 255, 255, 255 };
-}
-
-namespace GameBase {
-    GameManager manager;
-    bool DEBAUG_MODE = true;
+    constexpr const char* DEFAULT_TITLE = "Game";
+    constexpr const int FPS = 60;
+    constexpr const int WIDTH = 1280;
+    constexpr const int HEIGHT = 720;
+    constexpr const int COLORBIT = 32;
+    constexpr const int BACKGROUND_COLOR[3] = { 255, 255, 255 };
 }
