@@ -27,7 +27,7 @@ GameStatus GameManager::GetStatus() {
 }
 
 void GameManager::SetStatus(GameStatus status_) {
-	this->status = status;
+	this->status = status_;
 }
 
 void GameManager::InitGame() {

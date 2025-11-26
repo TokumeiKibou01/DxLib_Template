@@ -16,6 +16,13 @@ namespace Color {
 	const int WHITE = GetColor(255, 255, 255);
 }
 
+namespace Input {
+	void KeyStateUpdate();
+	bool IsKeyUP(int keyCode);
+	bool IsKeyDown(int keyCode);
+	int IsKeepKeyDown(int keyCode);
+}
+
 class GameUtility {
 public:
 	static void DrawText(DrawType type, int x, int y, int size, unsigned int text_color, unsigned int edge_color, std::string text);

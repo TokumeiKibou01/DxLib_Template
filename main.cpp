@@ -34,6 +34,7 @@ int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int n
 
     while (true) {
         ClearDrawScreen();
+        Input::KeyStateUpdate();
 
         //処理
         UpdateGame();
@@ -75,12 +76,25 @@ void initGame() {
 void UpdateGame() {
     switch (manager.GetStatus()) {
     case GameStatus::WAITING: {
+        GameUtility::DrawTextA(DrawType::CENTER, Window::WIDTH / 2, Window::HEIGHT / 2, 30, Color::WHITE, Color::BLACK, "ゲームを開始するにはspaceを押してください");
+        if (Input::IsKeyDown(KEY_INPUT_SPACE)) {
+            manager.SetStatus(GameStatus::RUNNING);
+            manager.SetTime(0);
+        }
         break;
     }
     case GameStatus::RUNNING: {
+        if (Input::IsKeyDown(KEY_INPUT_SPACE)) {
+            manager.SetStatus(GameStatus::ENDING);
+            manager.SetTime(0);
+        }
         break;
     }
     case GameStatus::ENDING: {
+        if (Input::IsKeyDown(KEY_INPUT_SPACE)) {
+            manager.SetStatus(GameStatus::WAITING);
+            manager.SetTime(0);
+        }
         break;
     }
     }
@@ -116,7 +130,9 @@ void DrawGame() {
 //デバックを描画する処理
 void DrawDebug() {
     if (DEBAUG_MODE) {
-        string leftUp_side = "時間: " + to_string(manager.GetTime());
+        string leftUp_side = 
+            "時間: " + to_string(manager.GetTime()) + "\n" +
+            + "現在の状態： " + to_string(manager.GetStatus()) + "\n";
         GameUtility::DrawTextA(DrawType::LEFT, 10, 10, 15, Color::WHITE, Color::BLACK, leftUp_side);
 
         string rightUp_side = "";
