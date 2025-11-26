@@ -1,0 +1,12 @@
+﻿################################################################################
+# この .gitignore ファイルは Microsoft(R) Visual Studio によって自動的に作成されました。
+################################################################################
+
+/.vs/DxLib_Template
+/DxLib_Template/x64/Debug
+/x64/Debug
+/DxLib_Template.sln
+/DxLib_Template.vcxproj
+/DxLib_Template.vcxproj.filters
+/DxLib_Template.vcxproj.user
+/Log.txt
