@@ -19,7 +19,7 @@ void PlayScene::Draw() {
 }
 
 void PlayScene::Update() {
-	bool beforeKey = false;
+	static bool beforeKey = false;
 	if (CheckHitKey(KEY_INPUT_SPACE) && !beforeKey) {
 		GetSceneManager().ChangeScene("TitleScene");
 	}
