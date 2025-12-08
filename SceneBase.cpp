@@ -4,7 +4,6 @@
 
 SceneBase::SceneBase(string name_) {
     this->name = name_;
-    drawVector = &GetDrawManager().drawMap[name];
 }
 
 SceneBase::~SceneBase() {

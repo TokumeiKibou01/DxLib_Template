@@ -1,6 +1,5 @@
 #pragma once
 #include "SceneManager.h"
-#include "DrawManager.h"
 
 namespace Screen {
 	const int WIDTH = 1280;
@@ -8,11 +7,6 @@ namespace Screen {
 	const int COLORBIT = 32;
 	const int FPS = 60;
 	const int BACK_COLOR[3] = {0, 0, 0};
-}
-
-inline DrawManager& GetDrawManager() {
-	static DrawManager drawManager;
-	return drawManager;
 }
 
 inline SceneManager& GetSceneManager() {

@@ -7,7 +7,7 @@ using namespace std;
 
 class SceneBase {
 protected:
-	vector<DrawBase*>* drawVector;
+	vector<DrawBase*> drawVector;
 private:
 	string name;
 public:

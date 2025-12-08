@@ -15,6 +15,7 @@ private:
 	Postion postion;
 	Vector3D vector;
 	float width, height;
+	std::vector<DrawBase*> drawVector;
 public:
 	DrawBase(string name_, int width_, int height_, Postion postion_, Vector3D vector_);
 	~DrawBase();
